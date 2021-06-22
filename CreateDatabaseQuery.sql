@@ -12,7 +12,7 @@ create table Movie (
 	MovieId int Primary key identity,
 	MovieName varchar(255) not null,
 	Duration Time not null,
-	Rate float
+	Rate float check (Rate >= 0 and Rate <= 10)
 )
 
 create table Actor(
