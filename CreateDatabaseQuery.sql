@@ -1,6 +1,6 @@
 create table Person(
 	PersonId int Primary key identity,
-	Occupation varchar(255) not null
+	PersonName varchar(255) not null
 )
 
 create table Genre(
