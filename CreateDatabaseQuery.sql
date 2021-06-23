@@ -1,11 +1,11 @@
 create table Person(
 	PersonId int Primary key identity,
-	PersonName varchar(255) not null
+	PersonName varchar(255) unique not null
 )
 
 create table Genre(
 	GenreId int Primary key identity,
-	GenreName varchar(255) not null,
+	GenreName varchar(255) unique not null,
 )
 
 create table Movie (
@@ -22,7 +22,8 @@ create table Actor(
 
 create table ProducerMovies(
 	ProducerId int foreign key references Person(PersonId),
-	MovieId int foreign key references Movie(MovieId)
+	MovieId int foreign key references Movie(MovieId),
+	primary key (ProducerId, MovieId)
 )
 
 create table Reviewer(
@@ -42,14 +43,17 @@ create table Review(
 create table MovieGenres(
 	GenreId int foreign key references Genre(GenreId),
 	MovieId int foreign key references Movie(MovieId),
+	primary key (GenreId, MovieId)
 )
 
 create table MoviesActors(
 	ActorId int foreign key references Actor(ActorId),
 	MovieId int foreign key references Movie(MovieId),
+	primary key (ActorId, MovieId)
 )
 
 create table ReviewerWatchHistory(
 	MovieId int foreign key references Movie(MovieId),
 	ReviewerID int foreign key references Reviewer(ReviewerId) not null
+	primary key (MovieId, ReviewerId)
 )
