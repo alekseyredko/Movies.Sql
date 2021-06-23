@@ -27,13 +27,13 @@ create table ProducerMovies(
 
 create table Reviewer(
 	ReviewerId int Primary key foreign key references Person(PersonId),
-	PersonRate float check (PersonRate >= 1 and PersonRate <= 5)
+	PersonRate float check (PersonRate >= 1 and PersonRate <= 10)
 )
 
 create table Review(
 	ReviewId int Primary key identity,
 	RevievText varchar(1024) not null,
-	Rate float default 5 check (Rate >=1 and Rate <=10),
+	Rate float default 5 check (Rate >= 1 and Rate <= 10),
 	MovieId int foreign key references Movie(MovieId) not null,
 	ReviewerID int foreign key references Reviewer(ReviewerId) not null
 )
