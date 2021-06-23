@@ -12,7 +12,8 @@ create table Movie (
 	MovieId int Primary key identity,
 	MovieName varchar(255) not null,
 	Duration Time not null,
-	Rate float check (Rate >= 0 and Rate <= 10)
+	Rate float check (Rate >= 0 and Rate <= 10),
+	LastUpdate DateTime
 )
 
 create table Actor(
@@ -36,7 +37,8 @@ create table Review(
 	RevievText varchar(1024) not null,
 	Rate float default 5 check (Rate >= 1 and Rate <= 10),
 	MovieId int foreign key references Movie(MovieId) not null,
-	ReviewerID int foreign key references Reviewer(ReviewerId) not null
+	ReviewerId int foreign key references Reviewer(ReviewerId) not null,
+	LastUpdate DateTime
 )
 
 
@@ -53,7 +55,8 @@ create table MoviesActors(
 )
 
 create table ReviewerWatchHistory(
-	MovieId int foreign key references Movie(MovieId),
-	ReviewerID int foreign key references Reviewer(ReviewerId) not null
-	primary key (MovieId, ReviewerId)
+	MovieId int foreign key references Movie(MovieId) not null,
+	ReviewerID int foreign key references Reviewer(ReviewerId) not null,
+	--primary key (MovieId, ReviewerId)
+	LastWatchTime DateTime
 )
