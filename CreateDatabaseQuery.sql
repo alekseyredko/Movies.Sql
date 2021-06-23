@@ -20,8 +20,8 @@ create table Actor(
 	Age int check (Age >= 0 and Age <= 200)
 )
 
-create table Producer(
-	ProducerId int Primary key foreign key references Person(PersonId),
+create table ProducerMovies(
+	ProducerId int foreign key references Person(PersonId),
 	MovieId int foreign key references Movie(MovieId)
 )
 
